@@ -14,12 +14,17 @@ public class Outer extends Model {
 		this.inner = inner;
 	}
 
-//	@Id
-//	public String id;
+	@Id
+	public String id;
 	
 	public String outerVariable;
 	
 	@Embedded
 	public Inner inner;
+	
+	//overridden methods, required for Play-Morphia
+	@Override public Object getId() {return id;}
+    @Override protected void setId_(Object id) {}
+    protected static Object processId_(Object id) {return id;}	
 	
 }
